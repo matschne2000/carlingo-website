@@ -12,6 +12,10 @@
     body{background:var(--dark);color:#fff;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden}
     nav{position:fixed;top:0;left:0;right:0;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100}
     .nav-logo{font-size:18px;font-weight:800;color:var(--gold)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switcher{display:flex;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px}
+    .lang-btn{padding:4px 12px;border-radius:16px;border:none;background:transparent;color:var(--muted);font-size:12px;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif}
+    .lang-btn.active{background:var(--gold);color:#0a0a12;font-weight:700}
     .nav-badge{background:var(--border);border:1px solid #2a2a3a;border-radius:20px;padding:6px 14px;font-size:12px;color:var(--muted)}
     .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center}
     .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,160,32,0.1);border:1px solid rgba(232,160,32,0.3);border-radius:100px;padding:8px 20px;font-size:12px;color:var(--gold);letter-spacing:.15em;margin-bottom:32px;text-transform:uppercase}
@@ -44,71 +48,200 @@
     .cta-card p{color:var(--muted);font-size:16px;margin-bottom:32px;line-height:1.6}
     footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--muted);font-size:13px}
     footer a{color:var(--muted);text-decoration:none}
+    .hidden{display:none}
   </style>
 </head>
 <body>
   <nav>
     <div class="nav-logo">🦅 CARLINGO</div>
-    <div class="nav-badge">🚀 COMING SOON</div>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('de')">🇩🇪 DE</button>
+        <button class="lang-btn" onclick="setLang('jp')">🇯🇵 JP</button>
+      </div>
+      <div class="nav-badge" id="nav-badge">🚀 COMING SOON</div>
+    </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">🎙️ Audio-First · Hands-Free · Unterwegs</div>
+    <div class="hero-badge" id="hero-badge">🎙️ Audio-First · Hands-Free · Unterwegs</div>
     <img src="mascot.png" alt="Carlingo" class="hero-mascot" onerror="this.style.display='none'">
-    <h1>Japanisch lernen.<span>Ohne hinzuschauen.</span></h1>
-    <p class="hero-sub">Der einzige Trainer der im Auto, beim Joggen und Pendeln funktioniert – komplett hands-free, komplett audio-basiert.</p>
-    <a href="#" class="btn-primary">📱 Bald im App Store</a>
-    <span class="btn-secondary">iOS · Android folgt · Kostenlos starten</span>
+    <h1 id="hero-h1">Japanisch lernen.<span id="hero-h1-span">Ohne hinzuschauen.</span></h1>
+    <p class="hero-sub" id="hero-sub">Der einzige Trainer der im Auto, beim Joggen und Pendeln funktioniert – komplett hands-free, komplett audio-basiert.</p>
+    <a href="#" class="btn-primary" id="hero-cta">📱 Bald im App Store</a>
+    <span class="btn-secondary" id="hero-sub2">iOS · Android folgt · Kostenlos starten</span>
   </section>
 
+  <!-- STATS -->
   <section style="background:linear-gradient(180deg,transparent,rgba(45,212,191,0.03),transparent)">
-    <div class="section-label">Carlingo in Zahlen</div>
-    <div class="section-title">Lernen das <span>wirklich funktioniert</span></div>
+    <div class="section-label" id="stats-label">Carlingo in Zahlen</div>
+    <div class="section-title" id="stats-title">Lernen das <span>wirklich funktioniert</span></div>
     <div class="stats-grid">
-      <div class="stat"><div class="stat-num">795</div><div class="stat-label">JLPT Vokabeln</div></div>
-      <div class="stat"><div class="stat-num">10</div><div class="stat-label">Themenbereiche</div></div>
-      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Schwierigkeitsstufen</div></div>
-      <div class="stat"><div class="stat-num">180</div><div class="stat-label">Stunden Pendelzeit im Jahr</div></div>
+      <div class="stat"><div class="stat-num">795</div><div class="stat-label" id="stat1">JLPT Vokabeln</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label" id="stat2">Themenbereiche</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label" id="stat3">Schwierigkeitsstufen</div></div>
+      <div class="stat"><div class="stat-num">180</div><div class="stat-label" id="stat4">Stunden Pendelzeit im Jahr</div></div>
     </div>
   </section>
 
+  <!-- HOW -->
   <section>
-    <div class="section-label">So funktioniert es</div>
-    <div class="section-title">App spricht. <span>Du antwortest.</span></div>
+    <div class="section-label" id="how-label">So funktioniert es</div>
+    <div class="section-title" id="how-title">App spricht. <span id="how-title-span">Du antwortest.</span></div>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-content"><h3>🎧 Wähle dein Thema & Level</h3><p>Familie, Essen, Reisen, Business und mehr. 6 Stufen von Anfänger bis Profi.</p></div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-content"><h3>🔊 Die App spricht ein deutsches Wort</h3><p>Zum Beispiel: „Wasser". Du hast 8 Sekunden um auf Japanisch zu antworten.</p></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><h3>✅ Sofortiges Audio-Feedback</h3><p>Richtig? Positiver Ton. Falsch? Du hörst die korrekte Antwort und kannst sie nachsprechen.</p></div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-content"><h3>🔁 Spaced Repetition</h3><p>Falsche Wörter kommen nach 5 weiteren Vokabeln wieder. So lernst du schnell und nachhaltig.</p></div></div>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><h3 id="step1-h">🎧 Wähle dein Thema & Level</h3><p id="step1-p">Familie, Essen, Reisen, Business und mehr. 6 Stufen von Anfänger bis Profi.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><h3 id="step2-h">🔊 Die App spricht ein deutsches Wort</h3><p id="step2-p">Zum Beispiel: „Wasser". Du hast 8 Sekunden um auf Japanisch zu antworten.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><h3 id="step3-h">✅ Sofortiges Audio-Feedback</h3><p id="step3-p">Richtig? Positiver Ton. Falsch? Du hörst die korrekte Antwort und kannst sie nachsprechen.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><h3 id="step4-h">🔁 Spaced Repetition</h3><p id="step4-p">Falsche Wörter kommen nach 5 weiteren Vokabeln wieder. So lernst du schnell und nachhaltig.</p></div></div>
     </div>
   </section>
 
+  <!-- FEATURES -->
   <section>
-    <div class="section-label">Features</div>
-    <div class="section-title">Alles was du <span>brauchst</span></div>
+    <div class="section-label" id="feat-label">Features</div>
+    <div class="section-title" id="feat-title">Alles was du <span>brauchst</span></div>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">🚗</div><div class="feature-title">Hands-Free</div><div class="feature-desc">Funktioniert mit AirPods, Bluetooth-Headsets und CarPlay. Kein Blick aufs Handy nötig.</div></div>
-      <div class="feature-card"><div class="feature-icon">🔥</div><div class="feature-title">Learning Streak</div><div class="feature-desc">Täglich lernen und deinen Streak aufbauen. Bleib am Ball mit täglichen Zielen.</div></div>
-      <div class="feature-card"><div class="feature-icon">🎙️</div><div class="feature-title">Nachsprech-Modus</div><div class="feature-desc">Falsche Wörter zweimal hören, dann nachsprechen. Sofortiger Lerneffekt.</div></div>
-      <div class="feature-card"><div class="feature-icon">🇯🇵</div><div class="feature-title">JLPT Vokabular</div><div class="feature-desc">795 geprüfte Vokabeln aus dem offiziellen japanischen Sprachtest N3/N4.</div></div>
-      <div class="feature-card"><div class="feature-icon">↔️</div><div class="feature-title">Beide Richtungen</div><div class="feature-desc">Deutsch → Japanisch oder Japanisch → Deutsch. Oder gemischt für Fortgeschrittene.</div></div>
-      <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-title">Zweisprachige App</div><div class="feature-desc">App-Oberfläche auf Deutsch oder Japanisch. Ideal auch für japanische Nutzer.</div></div>
+      <div class="feature-card"><div class="feature-icon">🚗</div><div class="feature-title" id="f1-t">Hands-Free</div><div class="feature-desc" id="f1-d">Funktioniert mit AirPods, Bluetooth-Headsets und CarPlay. Kein Blick aufs Handy nötig.</div></div>
+      <div class="feature-card"><div class="feature-icon">🔥</div><div class="feature-title" id="f2-t">Learning Streak</div><div class="feature-desc" id="f2-d">Täglich lernen und deinen Streak aufbauen. Bleib am Ball mit täglichen Zielen.</div></div>
+      <div class="feature-card"><div class="feature-icon">🎙️</div><div class="feature-title" id="f3-t">Nachsprech-Modus</div><div class="feature-desc" id="f3-d">Falsche Wörter zweimal hören, dann nachsprechen. Sofortiger Lerneffekt.</div></div>
+      <div class="feature-card"><div class="feature-icon">🇯🇵</div><div class="feature-title" id="f4-t">JLPT Vokabular</div><div class="feature-desc" id="f4-d">795 geprüfte Vokabeln aus dem offiziellen japanischen Sprachtest N3/N4.</div></div>
+      <div class="feature-card"><div class="feature-icon">↔️</div><div class="feature-title" id="f5-t">Beide Richtungen</div><div class="feature-desc" id="f5-d">Deutsch → Japanisch oder Japanisch → Deutsch. Oder gemischt für Fortgeschrittene.</div></div>
+      <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-title" id="f6-t">Zweisprachige App</div><div class="feature-desc" id="f6-d">App-Oberfläche auf Deutsch oder Japanisch. Ideal auch für japanische Nutzer.</div></div>
     </div>
   </section>
 
+  <!-- CTA -->
   <section>
     <div class="cta-card">
-      <h2>Lernzeit = <span>Fahrzeit.</span></h2>
-      <p>30 Minuten Pendelzeit täglich sind 180 Stunden im Jahr. Nutze sie mit Carlingo – hands-free, fokussiert, effektiv.</p>
-      <a href="#" class="btn-primary">📱 Bald im App Store</a>
-      <p style="margin-top:16px;font-size:13px;color:#444">iOS · Kostenlos starten · Android folgt</p>
+      <h2 id="cta-h2">Lernzeit = <span>Fahrzeit.</span></h2>
+      <p id="cta-p">30 Minuten Pendelzeit täglich sind 180 Stunden im Jahr. Nutze sie mit Carlingo – hands-free, fokussiert, effektiv.</p>
+      <a href="#" class="btn-primary" id="cta-btn">📱 Bald im App Store</a>
+      <p style="margin-top:16px;font-size:13px;color:#444" id="cta-sub">iOS · Kostenlos starten · Android folgt</p>
     </div>
   </section>
 
   <footer>
     <p style="margin-bottom:12px">🦅 <strong>Carlingo</strong> · Japanisch Hands-Free</p>
-    <p><a href="mailto:hello@carlingo.io">hello@carlingo.io</a> · <a href="#">Datenschutz</a> · <a href="#">Impressum</a></p>
-    <p style="margin-top:16px">© 2026 Carlingo · carlingo.io</p>
+    <p><a href="mailto:hello@carlingo.io">hello@carlingo.io</a> · <a href="/datenschutz" id="footer-privacy">Datenschutz</a> · <a href="/impressum" id="footer-imprint">Impressum</a></p>
+    <p style="margin-top:16px">© 2026 Confoodcius UG (haftungsbeschränkt) · carlingo.io</p>
   </footer>
+
+  <script>
+    const texts = {
+      de: {
+        badge: '🚀 COMING SOON',
+        heroBadge: '🎙️ Audio-First · Hands-Free · Unterwegs',
+        heroH1: 'Japanisch lernen.',
+        heroSpan: 'Ohne hinzuschauen.',
+        heroSub: 'Der einzige Trainer der im Auto, beim Joggen und Pendeln funktioniert – komplett hands-free, komplett audio-basiert.',
+        heroCta: '📱 Bald im App Store',
+        heroSub2: 'iOS · Android folgt · Kostenlos starten',
+        statsLabel: 'Carlingo in Zahlen',
+        statsTitle: 'Lernen das <span>wirklich funktioniert</span>',
+        stat1: 'JLPT Vokabeln', stat2: 'Themenbereiche', stat3: 'Schwierigkeitsstufen', stat4: 'Stunden Pendelzeit im Jahr',
+        howLabel: 'So funktioniert es',
+        howTitle: 'App spricht. <span>Du antwortest.</span>',
+        step1h: '🎧 Wähle dein Thema & Level', step1p: 'Familie, Essen, Reisen, Business und mehr. 6 Stufen von Anfänger bis Profi.',
+        step2h: '🔊 Die App spricht ein deutsches Wort', step2p: 'Zum Beispiel: „Wasser". Du hast 8 Sekunden um auf Japanisch zu antworten.',
+        step3h: '✅ Sofortiges Audio-Feedback', step3p: 'Richtig? Positiver Ton. Falsch? Du hörst die korrekte Antwort und kannst sie nachsprechen.',
+        step4h: '🔁 Spaced Repetition', step4p: 'Falsche Wörter kommen nach 5 weiteren Vokabeln wieder. So lernst du schnell und nachhaltig.',
+        featLabel: 'Features', featTitle: 'Alles was du <span>brauchst</span>',
+        f1t: 'Hands-Free', f1d: 'Funktioniert mit AirPods, Bluetooth-Headsets und CarPlay. Kein Blick aufs Handy nötig.',
+        f2t: 'Learning Streak', f2d: 'Täglich lernen und deinen Streak aufbauen. Bleib am Ball mit täglichen Zielen.',
+        f3t: 'Nachsprech-Modus', f3d: 'Falsche Wörter zweimal hören, dann nachsprechen. Sofortiger Lerneffekt.',
+        f4t: 'JLPT Vokabular', f4d: '795 geprüfte Vokabeln aus dem offiziellen japanischen Sprachtest N3/N4.',
+        f5t: 'Beide Richtungen', f5d: 'Deutsch → Japanisch oder Japanisch → Deutsch. Oder gemischt für Fortgeschrittene.',
+        f6t: 'Zweisprachige App', f6d: 'App-Oberfläche auf Deutsch oder Japanisch. Ideal auch für japanische Nutzer.',
+        ctaH2: 'Lernzeit = <span>Fahrzeit.</span>',
+        ctaP: '30 Minuten Pendelzeit täglich sind 180 Stunden im Jahr. Nutze sie mit Carlingo – hands-free, fokussiert, effektiv.',
+        ctaBtn: '📱 Bald im App Store', ctaSub: 'iOS · Kostenlos starten · Android folgt',
+        footerPrivacy: 'Datenschutz', footerImprint: 'Impressum'
+      },
+      jp: {
+        badge: '🚀 もうすぐ登場',
+        heroBadge: '🎙️ 音声のみ · ハンズフリー · どこでも',
+        heroH1: '日本語を学ぼう。',
+        heroSpan: '画面を見なくても。',
+        heroSub: '車の中でも、ジョギング中でも、通勤中でも使える唯一のトレーナー。完全ハンズフリー、完全音声ベース。',
+        heroCta: '📱 もうすぐApp Storeで',
+        heroSub2: 'iOS · Android版も近日公開 · 無料で始める',
+        statsLabel: 'Carlingoの数字',
+        statsTitle: '本当に効果のある<span>学習</span>',
+        stat1: 'JLPT単語', stat2: 'テーマ', stat3: '難易度レベル', stat4: '年間の通勤時間（時間）',
+        howLabel: '使い方',
+        howTitle: 'アプリが話す。<span>あなたが答える。</span>',
+        step1h: '🎧 テーマとレベルを選ぶ', step1p: '家族、食べ物、旅行、ビジネスなど。初心者からプロまで6段階。',
+        step2h: '🔊 アプリがドイツ語の単語を話す', step2p: '例：「Wasser（水）」。8秒以内に日本語で答えてください。',
+        step3h: '✅ 即座の音声フィードバック', step3p: '正解？ポジティブな音。不正解？正しい答えを聞いて、繰り返し練習できます。',
+        step4h: '🔁 スペースドリピティション', step4p: '間違えた単語は5問後に再出題。素早く確実に覚えられます。',
+        featLabel: '機能', featTitle: '必要な<span>すべて</span>が揃っています',
+        f1t: 'ハンズフリー', f1d: 'AirPods、Bluetoothヘッドセット、CarPlayに対応。画面を見る必要なし。',
+        f2t: '学習ストリーク', f2d: '毎日学習してストリークを伸ばそう。毎日の目標で継続をサポート。',
+        f3t: 'リピート練習', f3d: '間違えた単語を2回聞いて、自分で発音練習。即効性のある学習効果。',
+        f4t: 'JLPT単語集', f4d: '公式日本語能力試験N3/N4から選んだ795の単語。',
+        f5t: '双方向学習', f5d: 'ドイツ語→日本語、または日本語→ドイツ語。ミックスモードも選択可能。',
+        f6t: '二言語対応アプリ', f6d: 'アプリ画面はドイツ語または日本語で表示。日本人ユーザーにも最適。',
+        ctaH2: '学習時間 ＝ <span>移動時間。</span>',
+        ctaP: '毎日30分の通勤時間は年間180時間。Carlingoでその時間を有効活用しましょう。',
+        ctaBtn: '📱 もうすぐApp Storeで', ctaSub: 'iOS · 無料で始める · Android版も近日公開',
+        footerPrivacy: 'プライバシーポリシー', footerImprint: '特定商取引法'
+      }
+    };
+
+    function setLang(lang) {
+      const t = texts[lang];
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+      document.getElementById('nav-badge').textContent = t.badge;
+      document.getElementById('hero-badge').textContent = t.heroBadge;
+      document.getElementById('hero-h1').childNodes[0].textContent = t.heroH1;
+      document.getElementById('hero-h1-span').textContent = t.heroSpan;
+      document.getElementById('hero-sub').textContent = t.heroSub;
+      document.getElementById('hero-cta').textContent = t.heroCta;
+      document.getElementById('hero-sub2').textContent = t.heroSub2;
+      document.getElementById('stats-label').textContent = t.statsLabel;
+      document.getElementById('stats-title').innerHTML = t.statsTitle;
+      document.getElementById('stat1').textContent = t.stat1;
+      document.getElementById('stat2').textContent = t.stat2;
+      document.getElementById('stat3').textContent = t.stat3;
+      document.getElementById('stat4').textContent = t.stat4;
+      document.getElementById('how-label').textContent = t.howLabel;
+      document.getElementById('how-title').innerHTML = t.howTitle;
+      document.getElementById('step1-h').textContent = t.step1h;
+      document.getElementById('step1-p').textContent = t.step1p;
+      document.getElementById('step2-h').textContent = t.step2h;
+      document.getElementById('step2-p').textContent = t.step2p;
+      document.getElementById('step3-h').textContent = t.step3h;
+      document.getElementById('step3-p').textContent = t.step3p;
+      document.getElementById('step4-h').textContent = t.step4h;
+      document.getElementById('step4-p').textContent = t.step4p;
+      document.getElementById('feat-label').textContent = t.featLabel;
+      document.getElementById('feat-title').innerHTML = t.featTitle;
+      document.getElementById('f1-t').textContent = t.f1t;
+      document.getElementById('f1-d').textContent = t.f1d;
+      document.getElementById('f2-t').textContent = t.f2t;
+      document.getElementById('f2-d').textContent = t.f2d;
+      document.getElementById('f3-t').textContent = t.f3t;
+      document.getElementById('f3-d').textContent = t.f3d;
+      document.getElementById('f4-t').textContent = t.f4t;
+      document.getElementById('f4-d').textContent = t.f4d;
+      document.getElementById('f5-t').textContent = t.f5t;
+      document.getElementById('f5-d').textContent = t.f5d;
+      document.getElementById('f6-t').textContent = t.f6t;
+      document.getElementById('f6-d').textContent = t.f6d;
+      document.getElementById('cta-h2').innerHTML = t.ctaH2;
+      document.getElementById('cta-p').textContent = t.ctaP;
+      document.getElementById('cta-btn').textContent = t.ctaBtn;
+      document.getElementById('cta-sub').textContent = t.ctaSub;
+      document.getElementById('footer-privacy').textContent = t.footerPrivacy;
+      document.getElementById('footer-imprint').textContent = t.footerImprint;
+      localStorage.setItem('carlingo-lang', lang);
+    }
+
+    // Load saved language
+    const saved = localStorage.getItem('carlingo-lang');
+    if (saved) setLang(saved);
+  </script>
 </body>
 </html>
